@@ -1,0 +1,1732 @@
+/*@!Encoding:1252*/
+/*============================================================================*/
+/*                        I BS SOFTWARE GROUP                                 */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*/
+/*!
+ * $Source: SAS_TA_Services.cin $
+ * $Revision: 1.62 $
+ * $Author: Gdhoun-EXT, Tayssir (uidn5226) $
+ * $Date: 2019/12/09 15:19:49CET $
+ */
+/*============================================================================*/
+/* DESCRIPTION :                                                              */
+/** SAS auto test services provided for test cases
+*/
+/*============================================================================*/
+/* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
+/* AUTOMOTIVE GROUP, Interior Division, Body and Security                     */
+/* ALL RIGHTS RESERVED                                                        */
+/*                                                                            */
+/* The reproduction, transmission, or use of this document or its content is  */
+/* not permitted without express written authority. Offenders will be liable  */
+/* for damages.                                                               */
+/* All rights, including rights created by patent grant or registration of a  */
+/* utility model or design, are reserved.                                     */
+/*                                                                            */
+/*============================================================================*/
+/*============================================================================*/
+/*                               OBJECT HISTORY in IMS                        */
+/*============================================================================*/
+/*
+ * $Log: SAS_TA_Services.cin  $
+ * Revision 1.62 2019/12/09 15:19:49CET Gdhoun-EXT, Tayssir (uidn5226) 
+ * follow up:change rank API
+ * Revision 1.61 2019/12/05 12:34:56CET Gdhoun-EXT, Tayssir (uidn5226) 
+ * Autotest:UAR: Change Rank API
+ * Revision 1.60 2019/11/29 09:28:39CET Gharbi-EXT, Sana (uidm9453) (uidm9453) 
+ * update for SqSUV HS project
+ * Revision 1.59 2019/11/19 13:17:27CET Kchaou-EXT, Ahmed (uid38838) 
+ * Update API and Tests with HS variant
+ * Revision 1.58 2019/08/28 11:30:21CEST Gdhoun-EXT, Tayssir (uidn5226) 
+ * change rank function in auto test
+ * Revision 1.57 2019/08/02 12:10:35CEST Gdhoun-EXT, Tayssir (uidn5226) 
+ * change rank api
+ * Revision 1.56 2019/06/13 14:14:24CEST Gdhoun-EXT, Tayssir (uidn5226) 
+ * Add new CAD zone configuration and update the file SAS_AT_CAD_APPRUN_nominal_tests.can with new tests for RKE,Wac and Pase triggers
+ * Revision 1.55 2019/03/27 09:54:50CET Gharbi-EXT, Sana (uidm9453) 
+ * TRUNK_SEPARATED_MNGT_CF  removal able (same update for SqSUV ST45) &  replacing HANDFREE_ZONING_CF  by IKEY_ZONING_ACTIVATION_S (only for read as test report header)
+ * Revision 1.54 2019/03/18 13:51:59CET Gharbi-EXT, Sana (uidm9453) 
+ * UAR
+ * Revision 1.53 2019/03/12 11:13:10CET Gharbi-EXT, Sana (uidm9453) 
+ * Add reaction time for C1A HFM
+ * Revision 1.51 2019/02/06 10:19:29CET Gharbi-EXT, Sana (uidm9453) 
+ * add zoning to fonctionality enum
+ * Revision 1.50 2018/12/14 16:13:47CET Kchaou-EXT, Ahmed (uid38838) 
+ * Disable approach unlock from CAD for LFCC 12 and 13 on SW 36 for C1A_SqSUV project
+ * Revision 1.49 2018/10/17 18:59:01CEST Lakhdar-EXT, Wassim (uidu6898) 
+ * fix test module revision display
+ * Revision 1.48 2018/09/13 10:39:27CEST Kchaou-EXT, Ahmed (uid38838) 
+ * Configuartion file UAR : improve SAS_TAsrv_Diag_Get_Key_Position function to take into account  zoning
+ * Revision 1.47 2018/09/03 16:22:22CEST Kchaou-EXT, Ahmed (uid38838) 
+ * Create new function to test if a functionality is enabled in an LF conf class
+ * Revision 1.46 2018/08/06 12:09:28CEST Gharbi-EXT, Sana (uidm9453) 
+ * Add SAS_TAsrv_Tested_Requirement function
+ * Revision 1.45 2018/08/01 17:15:31CEST Naggaz-EXT, Wessim (uidp6243) 
+ * UAR: Trunk separated
+ * Revision 1.44 2018/07/16 16:01:46CEST Kchaou-EXT, Ahmed (uid38838) 
+ * Follow up
+ * Revision 1.43 2018/07/11 14:42:42CEST Kchaou-EXT, Ahmed (uid38838) 
+ * UAR services
+ * Revision 1.42 2018/07/09 10:45:42CEST Kchaou-EXT, Ahmed (uid38838) 
+ * Update services and API layer for Sq_SUV
+ * Revision 1.41 2018/06/01 10:53:00CEST Kchaou-EXT, Ahmed (uid38838) 
+ * update after review + support variant for C1A HFM
+ * Revision 1.40 2018/05/22 12:11:29CEST Kchaou-EXT, Ahmed (uid38838) 
+ * Implement vehicle code for C1A HFM
+ * Revision 1.39 2018/04/12 15:39:02CEST Lakhdar-EXT, Wassim (uidu6898) 
+ * show test module version in the test report
+ * Revision 1.38 2018/01/26 10:04:19CET Kchaou-EXT, Ahmed (uid38838) 
+ * Update the robustness of tests
+ * Revision 1.36 2017/11/10 12:49:10CET Kchaou-EXT, Ahmed (uid38838) 
+ * UAR+ follow up
+ * Revision 1.35 2017/11/08 16:10:44CET Kchaou-EXT, Ahmed (uid38838) 
+ * API and services layer UAR
+ * Revision 1.34 2017/07/06 14:17:20CEST Riahi-EXT, Seifeddine (uidj3197) 
+ * Migration to Wireless Box
+ * Revision 1.33 2017/06/14 10:46:10CEST Neji-EXT, Marwa (uid38842) 
+ * overload the function "API_DIAG_Write_WorkSupport"
+ * Revision 1.32 2017/05/09 18:51:43CEST Neji-EXT, Marwa (uid38842) 
+ * fix req diag + remove "CF"
+ * Revision 1.31 2017/02/14 09:01:05CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * show ws name (update "void SAS_TAsrv_CAD_APRUN_WorkSupport()" , "void SAS_TAsrv_WAC_WorkSupport()" ,"void SAS_TAsrv_PASE_ACCESS_WorkSupport(Byte ZoningCf)" and "byte SAS_TAsrv_Set_LowPower_Status_On(char Test_Identifier[])"
+ * Revision 1.30 2017/01/25 15:19:08CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * fix test setup info's title
+ * Revision 1.29 2017/01/25 13:11:11CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * for C1A_HFM, disable access to enter LP only if car is unlocked
+ * Revision 1.28 2017/01/24 16:09:15CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * Change Vt_SAS_CFG_ALLOW_LP_TEST
+ * Revision 1.27 2017/01/24 15:43:29CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * check on LP tests request
+ * Revision 1.26 2017/01/24 09:44:50CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * Activate ikey_access_cf after disactivate it in "SAS_TAsrv_Set_LowPower_Status_On"
+ * Add "TRUNK_SEPARATED_MNGT_CF" and "PASE_ANTENNA_PHASE_CAR_TYPE_CF" in C1A_HFM
+ * Revision 1.25 2017/01/20 14:09:33CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * Set all doors status at the init
+ * Revision 1.24 2017/01/20 10:50:49CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * fix Tested Project Info
+ * Revision 1.23 2017/01/19 17:36:45CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * change LP test title
+ * Revision 1.22 2017/01/17 15:35:29CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * close the function SAS_TAsrv_Diag_Get_Key_Position()
+ * restore 1.18 history
+ * Revision 1.21 2017/01/17 11:16:53CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * fix test info
+ * Revision 1.20 2017/01/16 12:51:35CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * Update after Follow UP, move ETA and WAC WSs to PASE_info
+ * Revision 1.19 2017/01/13 16:07:03CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * Add WAC_SWITCH_OFF_DISTURBERS_CF and EASY_TRUNK_ACCESS_ECU_CF for RSA_CMFB and C1A_HFM
+ * Move CAD_APRUN_WorkSupport(), WAC_WorkSupport() and PASE_ACCESS_WorkSupport() to SAS_TA_API_MAIN.cin
+ * Revision 1.18 2017/01/12 16:13:08CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * updates done for CANoe 7.0
+ * Revision 1.17 2017/01/12 09:01:15CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * replace API_Byte_Array_To_ASCII_String(Data,4, result)  by snprintf(result,elcount(result),"%c%c%c%c",Data[0],Data[1],Data[2],Data[3]);
+ * Revision 1.16 2017/01/11 10:17:41CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * remove CFG_Software_Version_Size
+ * add KEY_PRESENT_CF for C1A_HFM and RSA_CMFB
+ * Revision 1.15 2017/01/09 12:39:45CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * remove TestCase_Title[] from SAS_TAsrv_TEST_Set_LowPower_Status_On()
+ * Revision 1.14 2017/01/06 11:33:10CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * Add  test title & description to SAS_TAsrv_TEST_Set_LowPower_Status_On()
+ * Revision 1.13 2017/01/05 11:51:09CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * update after review RT
+ * Revision 1.12 2016/12/26 16:30:16CET 07_TS_FM, CBC FOCUS23 (uidj3197) 
+ * Follow up implementation
+ * Revision 1.11 2016/12/22 15:37:35CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * Add HP/LP information in the setup information
+ * Add SAS_TAsrv_Is_LowPower_Reached() to check LP/HP Status                         
+ * Add SAS_TAsrv_Set_LowPower_Status() to set LP status
+ * Add new test case SAS_TAsrv_TEST_Set_LowPower_Status() to set LP status
+ * Revision 1.10 2016/11/16 13:44:27CET 07_TS_FM, CBC FOCUS23 (uidj3197) 
+ * Update after review
+ * Revision 1.9 2016/11/09 17:43:01CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * add HANDFREE_ZONING_CF for C1A_HFM
+ * Revision 1.8 2016/11/09 11:51:38CET 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * change SAS_TAsrv_Intialize_Test() call order in SAS_TAsrv_Intialize_Test(char reportFileName[])
+ * Revision 1.7 2016/11/09 09:17:24CET 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * add new variable: Is_test_initialized ;
+ * fix "byte SAS_TAsrv_Intialize_Test()" and "SAS_TAsrv_Power_Position_Init"
+ * Revision 1.6 2016/10/28 17:38:05CEST 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * fix SAS_TAsrv_Reset_Authent_Result()
+ * fix SAS_TAsrv_Number_Key_Paired()
+ * remove specific WS functions
+ * Revision 1.5 2016/10/27 17:19:16CEST 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * change configuration control strategy
+ * add new function SAS_TAsrv_Intialize_Test with additional parameter for the test report file name
+ * Revision 1.4 2016/10/12 15:10:26CEST 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * update after review
+ * Revision 1.3 2016/10/10 17:07:24CEST 07_TS_FA, CBC_FOCUS145 (uid38842) 
+ * improve gen layer
+ * Revision 1.2 2016/09/30 14:43:29CEST 07_TS_FA, CBC_FOCUS36 (uidu6898) 
+ * add error beep and debug message if simulation is stopped due the missing of the SAS_AT configuration
+*/
+/*============================================================================*/
+includes
+{
+  #include "API\SAS_TA_API_MAIN.cin"
+}
+
+variables
+{
+   Const byte C1A_Nissan_SLOCV1_VC = 0xFF;
+   byte keylearned[4];
+   byte Fct_correspandence[20];
+   byte Fct_correspandence_Table_size;
+   enum SEARCH_ZONE {
+    INSIDE = 0,
+    OUTSIDE,
+    OUTSIDE_TRUNK,
+    ETA_OUTSIDE_BACK,
+    OUTSIDE_RIGHT,
+    OUTSIDE_LEFT,
+    NOT_DTECTED
+   };  
+   enum Fct_Names {
+    ETA = 0,
+    WAC = 1,
+    CAD = 2,
+    Preauthent = 3,
+    Zoning = 4
+   }; 
+  enum Reaction_Func{
+    EngineStart = 1,
+    Lock = 2,
+    Unlock = 3,
+    RKE = 4,
+    Preauthent_Acess = 5
+  };
+}
+
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Intialize_Test                           
+ *  Role : This function is called when starting the test to make sure the test
+ *         is well configured                                      
+*******************************************************************************/
+byte SAS_TAsrv_Intialize_Test(char TestCaseVersion[])
+{
+  char Buffer[CFG_LONG_STRING_LENGH], Buffer2[CFG_LONG_STRING_LENGH];
+  long ret;
+  writeDbgLevel(0,"SAS_TA: init tests");
+  //check configuration
+  while(SAS_TAsrv_Is_SAS_Tests_Configured() == 0)
+  {
+    @SAS_TA::test_module_state = 5;//WaitingUserAction
+    if (@SAS_CFG_Project_ID == SAS_CFG_Project_ID::Undefined)
+    {
+      TestWaitForTesterConfirmation("Undefined tested project!\nCheck the mapping configuration, SAS_CFG_Project_ID variable\n\nMeasurement will be stopped",60000);
+      writeDbgLevel(0,"SAS_AT: STOP test running: check the mapping of the the environment variable SAS_CFG_Project_ID");
+      msgBeep(1);
+      stop();
+    }
+    else
+    {
+      //TestWaitForValueInput
+      //TestValidateTesterConfirmation
+      ret = TestWaitForTesterConfirmation("Worng configuration!\n\nIn the SAS AutoTest Panel, Set at least one connected KeyFob and one Antenna Box and click YES\n\nFor the default configuration (Connected Key = 1, one Antenna Box) click NO",60000);
+      @SAS_TA::test_module_state = 1;//RunningPassed
+      switch (ret)
+      {
+        case 0://timeout
+        case 2://no
+        {
+          //default configuration
+          @SAS_CFG_WirelessBox_Type = 0;
+          @SAS_CFG_KEY_Connected_1 = 1;
+          @SAS_CFG_KEY_Connected_2 = 0;
+          @SAS_CFG_KEY_Connected_3 = 0;
+          @SAS_CFG_KEY_Connected_4 = 0;
+          writeDbgLevel(0,"SAS_AT: Default configuration: Connected key = 1, One Antenna Box");
+        }
+        break;
+        case 1://yes
+          break;
+        default:
+        {
+          writeDbgLevel(0,"SAS_AT: STOP test running: check the configuration");
+          msgBeep(1);
+          stop();
+        }
+          break;
+      }
+    }
+  }
+  API_MAIN_Init_Test_Conf();
+  
+  //testWaitForSignalMatch(SAS_CFG_Project_ID,0,40000);
+  //@SAS_CFG_Project_ID = CFG_Project;
+  
+  //*********Test general info
+  TestReportAddSetupInfo ("Access&Start_AutoTest version", CFG_SAS_TA_version);
+  
+  strncpy(TestCaseVersion,TestCaseVersion,strlen(TestCaseVersion)-1);//remove last "$"
+  TestCaseVersion[0]=' ';//Remove first "$"
+  TestReportAddSetupInfo ("CAPL Test Module version", TestCaseVersion);//show "Revision: X.X"
+  
+  TestReportAddSetupInfo (">>>>> Tested Project","");
+  TestReportAddSetupInfo ("Tested Project Name", CFG_Project_Name);
+  API_DIAG_Start_Extended_Session(CFG_Low,"");//not mondatory
+  
+  testWaitForTimeout(50);
+  SAS_TAsrv_Software_Info1(Buffer);
+  testWaitForTimeout(50);
+  SAS_TAsrv_Software_Info2(Buffer2);
+  TestReportAddSetupInfo ("Tested Project Info", "%s | %s",Buffer, Buffer2);
+  
+  TestReportAddSetupInfo (">>>>> Keys and Antennas Configuration","");
+  ret = SAS_TAsrv_Number_Key_Paired();
+  if (ret != 0xFF)
+    TestReportAddSetupInfo ("Number of paired KeyFobs", "%d",ret);
+  else
+    TestReportAddSetupInfo ("Number of paired KeyFobs", "ERROR");
+  
+  SAS_TAsrv_Connected_KeyFOB(Buffer);
+  TestReportAddSetupInfo ("Connected instrumented KeyFobs", "%d (%s)",SAS_TAsrv_Get_Connected_KeyFob_Number(), Buffer);
+  
+  TestReportAddSetupInfo ("IMMO_LF commun antenna:", "%d",@SAS_CFG_WirelessBox_Type);
+  
+  SAS_TAsrv_Display_PASE_Info();
+  
+  SAS_TAsrv_Display_Additional_Info();
+   
+  TestReportAddSetupInfo (">>>>> Vehicle Status","");
+  //Power Position  
+  TestReportAddSetupInfo ("Power Position", "%s",TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+  //DOORS lock status
+  TestReportAddSetupInfo ("Doors Lock Status", "%s",TAB_DoorLockState_Name[@SAS_Env_Lock_State]);
+  //Door_open/close status (All doors & Trunk/BK)
+  API_MAIN_Set_All_Doors_Status("",CFG_EST_SideDoors.CLOSE);
+  SAS_TAsrv_Doors_Status(Buffer);
+  TestReportAddSetupInfo ("Doors Status", "%s",Buffer);
+
+    //HP/LP information 
+  if(SAS_TAsrv_Is_LowPower_Reached("") == 1)
+    TestReportAddSetupInfo ("LP/HP status", "Low Power");
+  else
+    TestReportAddSetupInfo ("LP/HP status", "High Power");
+  
+  //Set the zone name 
+  API_MAIN_Set_Zone();
+
+  //Get Supported Fonctionality
+  SAS_TAsrv_Find_Supported_Functionality();
+  
+  return 1;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Intialize_Test                           
+ *  Role : This function is called when starting the test to make sure the test
+ *         is well configured, it take as parameter the name of the test report 
+ *         adding to save it under the specific tested project test reports folder
+*******************************************************************************/
+byte SAS_TAsrv_Intialize_Test(char TestCaseVersion[], char reportFileName[])
+{
+  char filename[128];
+  byte ret;
+
+  ret = SAS_TAsrv_Intialize_Test(TestCaseVersion);	
+  snprintf(filename,elcount(filename),"SAS_AutoTest\\Test_Reports\\%s\\%s",CFG_Project_Name,reportFileName);
+  TestReportFileName(filename);
+  
+  return ret;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Is_SAS_Tests_Configured                           
+ *  Role : This function check if the project is selected and if there are 
+ *         at least one instrumented key                                     
+*******************************************************************************/
+byte SAS_TAsrv_Is_SAS_Tests_Configured()
+{
+  //writeDbgLevel(0,"SAS_TAsrv_Is_SAS_Tests_Configured");
+  if(@SAS_CFG_Project_ID == 0 || SAS_TAsrv_Get_Connected_KeyFob_Number()==0)
+    return 0;
+  writeDbgLevel(0,"SAS_TAsrv_Is_SAS_Tests_Configured:true");
+  return 1;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Is_KeyFobNum_Connected                           
+ *  Role : This function return whenever the key nnumber n is connected or no
+ *                                            
+*******************************************************************************/
+byte SAS_TAsrv_Is_KeyFobNum_Connected(byte KeyFobNum)
+{
+  char SAS_CFG_KEY_Connected_X[32];
+  snprintf(SAS_CFG_KEY_Connected_X,elcount(SAS_CFG_KEY_Connected_X),"SAS_CFG_KEY_Connected_%d",KeyFobNum);
+  
+  if (getvalue(SAS_CFG_KEY_Connected_X) == 1)
+    return 1;
+  return 0;
+}
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Software_Info1
+ *  Role : This function return the software version
+ *                                            
+*******************************************************************************/
+void SAS_TAsrv_Software_Info1(char result[])
+{
+  byte Data[64];
+  
+  if(API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", Data, "22 F1 94")==1)
+    snprintf(result,elcount(result),"%c%c%c%c",Data[0],Data[1],Data[2],Data[3]);
+  else
+    snprintf(result,elcount(result),"Diagnosis Request Error OR Negative Response");
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Software_Info2
+ *  Role : This function return the software version
+ *                                            
+*******************************************************************************/
+void SAS_TAsrv_Software_Info2(char result[])
+{
+  byte Data[4];
+   
+  if(API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", Data, "22 F1 95")==1)
+    snprintf(result,elcount(result),"%c%c%c%c",Data[0],Data[1],Data[2],Data[3]);
+  else
+    snprintf(result,elcount(result),"Diagnosis Request Error OR Negative Response"); 
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Number_Key_Paired
+ *  Role : This function return the software version
+ *                                            
+*******************************************************************************/
+byte SAS_TAsrv_Number_Key_Paired()
+{
+  byte Data[10];  
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {
+    if (API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", Data, "22 01 04",4)==1)
+      return API_MAIN_Count_Bit_Occurrence(Data[0] & 0x0F, 0, 4, 1);
+  }
+  else if((CFG_Project == @SAS_CONST_PRJ_RSA_CMFB) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    if (API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", Data, "22 40 5B")==1)
+      return Data[0];
+  }
+  return 0xFF;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_PASE_Info
+ *  Role : This function display the pase info for each project
+ *                                         
+*******************************************************************************/
+void SAS_TAsrv_Display_PASE_Info()
+{
+  char Buffer[CFG_LONG_STRING_LENGH];
+  
+  TestReportAddSetupInfo (">>>>> Access&Start Configuration","");
+    
+  if( CFG_Project == @SAS_CONST_PRJ_NIS_CMFB )
+  {  
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 14 01", 1, "WITHOUT", 0, "WITH");
+    TestReportAddSetupInfo ("LOCK_UNLOCK_BY_HANDS_FREE_FUNCTION", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 14 02", 1, "WITHOUT", 0, "WITH");
+    TestReportAddSetupInfo ("ENGINE_START_BY_HANDS_FREE_FUNCTION", "%s",Buffer);
+  }  
+  
+  if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB )
+  {
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 0b",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("KEY_PRESENT_CF", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 20",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("APPROACH_UNLOCK_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 21",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("APRUN_ACTIVATION_INITIAL_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 1F",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("CUSTOMER_APPROACH_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 15",1, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("IKEY_ACCESS_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 16", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("IKEY_ACCESS_ACTIVATION_INIT_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 60 B7", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("IKEY_ACCESS_ACTIVATION_STATE", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 25", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("EASY_TRUNK_ACCESS_ECU_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 1D", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WAC_ACTIVATION_INITIAL_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 1C", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WAC_BACKUP_MODE_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 1B", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WALK_AWAY_LOCKING_CF", "%s",Buffer);
+        
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 1e", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WAC_SWITCH_OFF_DISTURBERS_CF", "%s",Buffer);
+    
+  }
+
+  if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 04",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("KEY_PRESENT_CF", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 12",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("APPROACH_UNLOCK_CF", "%s",Buffer);
+    if (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS)
+    {
+      SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 03",0x80, "TRUE", 0x00, "FALSE");
+      TestReportAddSetupInfo ("APPRUN_FACTORY_SETTING_CF", "%s",Buffer);
+
+      SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 0B",0x80, "TRUE", 0x00, "FALSE");
+      TestReportAddSetupInfo ("USER_MOVING_DETECTION_CF", "%s",Buffer);
+    }
+    else
+    {
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 13",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("APRUN_ACTIVATION_INITIAL_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 11",0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("CUSTOMER_APPROACH_CF", "%s",Buffer);
+    }
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 08",1, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("IKEY_ACCESS_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 23", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("IKEY_ACCESS_ACTIVATION_INIT_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 40 C0", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("IKEY_ACCESS_ACTIVATION_ST_S", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 16", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("EASY_TRUNK_ACCESS_ECU_CF", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 af", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("PASE_ANTENNA_PHASE_CAR_TYPE_CF", "%s",Buffer);
+    
+    if(CFG_Project == @SAS_CONST_PRJ_C1A_HFM)
+      SAS_TAsrv_Get_Diag_Info(Buffer, "22 41 1f",0x80, "TRUE", 0x00, "FALSE");
+    else if ((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+      SAS_TAsrv_Get_Diag_Info(Buffer, "22 41 23",0x80, "TRUE", 0x00, "FALSE");
+    else
+      snprintf(Buffer,elcount(Buffer),"NA");
+    TestReportAddSetupInfo ("IKEY_ZONING_ACTIVATION_S", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 0F", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WAC_ACTIVATION_INITIAL_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 0E", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WAC_BACKUP_MODE_CF", "%s",Buffer);
+
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 0D", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WALK_AWAY_LOCKING_CF", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 10", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("WAC_SWITCH_OFF_DISTURBERS_CF", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info_multiple_choices(Buffer,"22 03 cd","Vehicle_Code_CF");
+    TestReportAddSetupInfo ("VEHICLE_CODE_CF", "%s",Buffer);
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Display_Additional_Info
+ *  Role : This function display the additional info for each project
+ *                                         
+*******************************************************************************/
+void SAS_TAsrv_Display_Additional_Info()
+{
+  char Buffer[CFG_LONG_STRING_LENGH];
+  
+  TestReportAddSetupInfo (">>>>> Additional Configuration","");
+    
+  if( CFG_Project == @SAS_CONST_PRJ_NIS_CMFB )
+  {  
+    SAS_TAsrv_Destination_Market(Buffer);
+    TestReportAddSetupInfo ("Destination Market", "%s",Buffer);
+    
+    SAS_TAsrv_DoorLock_Market(Buffer);
+    TestReportAddSetupInfo ("DoorLock Market", "%s",Buffer);
+    
+    //SAS_TAsrv_Select_Unlock(Buffer);
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 11 21", 1, "WITH", 0, "WITHOUT");
+    TestReportAddSetupInfo ("SELECT_UNLOCK_CONFIG", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 12 10", 1, "WITH", 0, "WITHOUT");
+    TestReportAddSetupInfo ("SELECT_UNLOCK", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 11 51", 1, "LEFT", 0, "RIGHT");
+    TestReportAddSetupInfo ("HANDLE_POSITION", "%s",Buffer);
+    
+    SAS_TAsrv_Transmission(Buffer);
+    TestReportAddSetupInfo ("Transmission Type", "%s",Buffer);
+    
+    SAS_TAsrv_KeyFOB_Frequency(Buffer);
+    TestReportAddSetupInfo ("KeyFOB Frequency", "%s",Buffer);
+    
+    SAS_TAsrv_KeyFOB_Type(Buffer);
+    TestReportAddSetupInfo ("KeyFOB Type", "%s",Buffer);
+    
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 13 6F", 1, "ACTIVE", 0, "INACTIVE");
+    TestReportAddSetupInfo ("FE_ESCL_model", "%s",Buffer);
+  }  
+
+  if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB )
+  {
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 00 03", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("ESCL_PRESENT_CF", "%s",Buffer);    
+  }
+
+  if((CFG_Project==@SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    SAS_TAsrv_Get_Diag_Info(Buffer, "22 03 00", 0x80, "TRUE", 0x00, "FALSE");
+    TestReportAddSetupInfo ("ESCL_PRESENT_CF", "%s",Buffer);    
+  }
+}
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_Diag_Info
+ *  Role : This function return the result of configuration (with/without)
+ *                                         
+*******************************************************************************/
+
+
+void SAS_TAsrv_Get_Diag_Info(char result[], char Diag_Rqst[], byte value1, char value1_text[], byte value2, char value2_text[])
+{
+  byte resp;
+  resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", Diag_Rqst);
+  if(resp == value1) strncpy(result,value1_text ,elcount(result));
+  else if(resp == value2) strncpy(result,value2_text,elcount(result));
+  else if(resp == -1) strncpy(result,"ERROR",elcount(result));
+  else snprintf(result,elcount(result),"0x%x",resp);    
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_Diag_Info_multiple_choices
+ *  Role : This function return the result of configuration that have multiple result
+ *  Parametre :  result = this parameter contain the diag result.
+                 Diag_Rqst = this is the diag request basset as string. 
+                 section = a diag request that contain multiple choices have a section defined in the project
+                           configuration file.this section s passed as string to this function.                            
+*******************************************************************************/
+
+byte SAS_TAsrv_Get_Diag_Info_multiple_choices(char result[], char Diag_Rqst[],char section[])
+{
+  byte resp;
+  char cfg_file[128]="0",diag_result[10],buffer[100]="-1";
+  long i =1,value; 
+ 
+  //get the config file of the project.
+  i = atol(cfg_file);
+  getValue(SAS_CFG_INI_FILE_PROJECT,cfg_file); 
+  
+  resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", Diag_Rqst);
+  if(resp != -1 )
+  {
+   snprintf(diag_result,elcount(diag_result),"%d",resp);
+   value = getProfileString(section, diag_result,"-1",buffer, elcount(buffer), cfg_file); //@SAS_CFG_Project_ID
+   strncpy(result,buffer ,elcount(buffer));
+  }  
+  else
+   strncpy(result,"ERROR",elcount(result));
+  
+  return resp;
+} 
+ 
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Destination_Market
+ *  Role : This function return the destination market
+ *         (0:JPN, 1:NAM, 2:EUR)  $11$54                                       
+*******************************************************************************/
+void SAS_TAsrv_Destination_Market(char result[])
+{
+  byte resp;
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {  
+    resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", "22 11 54");
+    if (resp >= 0 && resp < elcount(TAB_DIAG_Market))
+      strncpy(result,TAB_DIAG_Market[resp],elcount(result));
+    else
+      strncpy(result,"ERROR",elcount(result));
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_DoorLock_Market
+ *  Role : This function return the doorlock market
+ *         (0:JPN, 1:NAM, 2:EUR)  $13$71                                       
+*******************************************************************************/
+void SAS_TAsrv_DoorLock_Market(char result[])
+{
+  byte resp;
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {  
+    resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", "22 13 71");
+    if (resp >= 0 && resp < elcount(TAB_DIAG_Market))
+      strncpy(result,TAB_DIAG_Market[resp],elcount(result));
+    else
+      strncpy(result,"ERROR",elcount(result));  
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Transmission
+ *  Role : This function return the Vehicle transmission
+ *         (0:Invalide, 1:MT, 2:Invalide, 3:AT)  $13$0B                                       
+*******************************************************************************/
+void SAS_TAsrv_Transmission(char result[])
+{
+  byte resp;
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {  
+    resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", "22 13 0B");
+    if (resp >= 0 && resp < elcount(TAB_DIAG_Transmission))
+      strncpy(result,TAB_DIAG_Transmission[resp],elcount(result));
+    else
+      strncpy(result,"ERROR",elcount(result));
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_KeyFOB_Type
+ *  Role : This function return the KeyFOB Type
+ *         (1:L_UL, 2:L_UL_TR, 4:L_UL_PN, 8:RES_L_UL_PN)  $13$04                                      
+*******************************************************************************/
+void SAS_TAsrv_KeyFOB_Type(char result[])
+{
+  byte resp;
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {  
+    resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", "22 13 04");
+    if (resp != -1)
+      snprintf(result,elcount(result),"%d (%s)",resp,TAB_DIAG_KeyFOB_Type[resp]);   
+    else
+      strncpy(result,"ERROR",elcount(result));
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_KeyFOB_Frequency
+ *  Role : This function return the KeyFOB Frequency
+ *         (0:314.85MHz, 1:315MHz, 2:433.92MHz, 3:reserved)  $13$02                                      
+*******************************************************************************/
+void SAS_TAsrv_KeyFOB_Frequency(char result[])
+{
+  byte resp;
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {  
+    resp = API_DIAG_Read_WorkSupport (CFG_Low,"Diagnosis", "22 13 02");
+    if (resp != -1)
+      snprintf(result,elcount(result),"%d (%s)",resp,TAB_DIAG_KeyFOB_Frequency[resp]);   
+    else
+      strncpy(result,"ERROR",elcount(result));    
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Doors_Status
+ *  Role : This function return all vehicle doors status
+ *                                           
+*******************************************************************************/
+void SAS_TAsrv_Doors_Status(char result[])
+{
+  strncpy(result,"",elcount(result));
+  snprintf(result,elcount(result),"Driver: %s | ",TAB_SideDoorsStatus_Name[@SAS_Env_Driver_Door]);
+  snprintf(result,elcount(result),"%sAssistant: %s | ",result,TAB_SideDoorsStatus_Name[@SAS_Env_Passenger_Door]);
+  snprintf(result,elcount(result),"%sRear Left: %s | ",result,TAB_SideDoorsStatus_Name[@SAS_Env_Rear_Left_Door]);
+  snprintf(result,elcount(result),"%sRear Right: %s | ",result,TAB_SideDoorsStatus_Name[@SAS_Env_Rear_Right_Door]);
+  snprintf(result,elcount(result),"%sBack/Trunk: %s",result,TAB_BKDoorStatus_Name[@SAS_Env_Back_Door]);
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Connected_KeyFOB
+ *  Role : This function return all connected keys
+ *                                           
+*******************************************************************************/
+void SAS_TAsrv_Connected_KeyFOB(char result[])
+{
+  strncpy(result,"",elcount(result));
+  if(SAS_TAsrv_Is_KeyFobNum_Connected(1))snprintf(result,elcount(result),"| KeyFOB 1 |");
+  if(SAS_TAsrv_Is_KeyFobNum_Connected(2))snprintf(result,elcount(result),"%s| KeyFOB 2 |",result);
+  if(SAS_TAsrv_Is_KeyFobNum_Connected(3))snprintf(result,elcount(result),"%s| KeyFOB 3 |",result);
+  if(SAS_TAsrv_Is_KeyFobNum_Connected(4))snprintf(result,elcount(result),"%s| KeyFOB 4 |",result);
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_Connected_KeyFobNum                           
+ *  Role : This function return any connected key nnumber
+ *                                            
+*******************************************************************************/
+byte SAS_TAsrv_Get_Connected_KeyFobNum()
+{
+   int KeyFobNum_i;
+  for(KeyFobNum_i=1;KeyFobNum_i<5;KeyFobNum_i++)
+  {
+    if (SAS_TAsrv_Is_KeyFobNum_Connected(KeyFobNum_i)==1)
+      return KeyFobNum_i;
+  }
+  return 0;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_Connected_KeyFob_Number                           
+ *  Role : This function return the number of connected keys
+ *                                              
+*******************************************************************************/
+byte SAS_TAsrv_Get_Connected_KeyFob_Number()
+{
+  byte sum,KeyFobNum_i;
+  sum = 0;
+  
+  for(KeyFobNum_i=1;KeyFobNum_i<5;KeyFobNum_i++)
+  {
+    if (SAS_TAsrv_Is_KeyFobNum_Connected(KeyFobNum_i)==1)
+      sum++;
+  }
+  return sum;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Power_Position_Init                           
+ *  Role : This function set the vehicle power position to OFF
+ *                                    
+*******************************************************************************/
+void SAS_TAsrv_Power_Position_Init(char Test_Identifier[])
+{ 
+  int i=0;
+  if (@SAS_Signal_PowerPosition >= CFG_SST_POWER_POSITION.IGN)
+  {
+    testStep(Test_Identifier, "Power Position: %s | Set Power Position to OFF", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+    
+    if((CFG_Project != @SAS_CONST_PRJ_C1A_HFM) && (CFG_Project != @SAS_CONST_PRJ_RSA_CMFB) && (CFG_Project != @SAS_CONST_PRJ_C1A_SqSUV_HFM) && (CFG_Project != @SAS_CONST_PRJ_C1A_SqSUV_HS))
+    {
+      // Release the break pedal
+      putValue(SAS_Env_BreakPedal,CFG_EST_Brake.NOT_PRESSED);
+      
+      // Release the clutch pedal
+      putValue(SAS_Env_ClutchPedal,CFG_EST_Clutch.NOT_PRESSED);
+      
+      //Press STARt_Sw for 100ms
+      API_Press_Button("SAS_Env_Start_SW", "START SW",100);
+        
+      if(TestWaitForSignalInRange(SAS_Signal_PowerPosition, CFG_SST_POWER_POSITION.SLEEP, CFG_SST_POWER_POSITION.OFF, 1000) == 1)
+        testStep(Test_Identifier, "Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+      else testStepWarning(Test_Identifier, "Can't put Power Position to OFF | Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+    }
+    else if (CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+    {
+      if (@SAS_Signal_PowerPosition == CFG_SST_POWER_POSITION.CRK)
+      {
+        if(testWaitForSignalMatch(SAS_Signal_PowerPosition,CFG_SST_POWER_POSITION.RUN,20000)==0)
+        {
+          //Press STARt_Sw for 100ms
+          API_Press_Button("SAS_Env_Start_SW", "START SW",100);
+          testWaitForSignalMatch(SAS_Signal_PowerPosition,CFG_SST_POWER_POSITION.IGN,1000);
+        } 
+      }
+      
+      if (@SAS_Signal_PowerPosition >= CFG_SST_POWER_POSITION.RUN)
+      {
+        //Press STARt_Sw for 100ms
+        API_Press_Button("SAS_Env_Start_SW", "START SW",100);
+          
+        if(TestWaitForSignalInRange(SAS_Signal_PowerPosition, CFG_SST_POWER_POSITION.SLEEP, CFG_SST_POWER_POSITION.OFF, 3000) == 1)
+          testStep(Test_Identifier, "Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+        else 
+        {
+          testStep(Test_Identifier, "Can't put Power Position to OFF, Trying emergency STOP");
+          for(i=0;i<5;i++)
+          { 
+            @SAS_Env_Start_SW = 1;
+            testWaitForTimeout(80);
+            @SAS_Env_Start_SW = 0;
+            testWaitForTimeout(80);
+          }
+            
+          if(testWaitForSignalMatch(SAS_Signal_PowerPosition,CFG_SST_POWER_POSITION.IGN,1000)==0)
+            testStepWarning(Test_Identifier, "Can't put Power Position to OFF by emergency STOP | Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+        }
+      }
+      
+      if (@SAS_Signal_PowerPosition == CFG_SST_POWER_POSITION.IGN)
+      {
+       if(TestWaitForSignalInRange(SAS_Signal_PowerPosition, CFG_SST_POWER_POSITION.LOCK, CFG_SST_POWER_POSITION.OFF, 15000) == 1) 
+        testStep(Test_Identifier, "Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+       else
+        testStepWarning(Test_Identifier, "Can't put Power Position to OFF | Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+      } 
+    }
+    else if ((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+    {
+      @SAS_Signal_PowerPosition = CFG_SST_POWER_POSITION.LOCK;
+      testWaitForTimeout(50);
+      testStep(Test_Identifier, "Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+    }
+    testWaitForTimeout(100); 
+  }
+  else
+    testStep(Test_Identifier, "Power Position: %s", TAB_Power_State_Name[@SAS_Signal_PowerPosition]);
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Reset_Authent_Result                           
+ *  Role : This function reset the vehicle authent result (immo ok flag)
+ *                                
+*******************************************************************************/
+void SAS_TAsrv_Reset_Authent_Result()
+{ 
+  int i;
+  byte Ant_WB1_status[6],Ant_WB2_status[6],Immo_1_status,Immo_2_status; 
+
+  
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {
+    teststep("precondition", "reset authent result (open and close the door)");
+    
+    Immo_1_status = getValue("IMMO_ON_1");
+    Immo_2_status = getValue("IMMO_ON_2");
+    for(i=0;i<6;i++)
+    {
+      Ant_WB1_status[i] = getValue(Antennas[i][0]);
+      Ant_WB2_status[i] = getValue(Antennas[i][1]);
+    } 
+    API_ANT_Set_All_LF_Antennas_State("Action",Antennas_OFF,WB_number_1);
+    API_ANT_Set_All_LF_Antennas_State("Action",Antennas_OFF,WB_number_2);
+    API_ANT_Set_IMMO_Antenna_State("Action",Antennas_OFF,WB_number_1);
+    API_ANT_Set_IMMO_Antenna_State("Action",Antennas_OFF,WB_number_2);
+    
+    if (@SAS_Env_Lock_State == CFG_EST_DoorLockState.UNLOCK)
+    {
+      API_PRESS_BUTTON("sas_env_cd_unlock_sw","cdl_sw_unlock",100);
+      testwaitfortimeout(100);
+      teststeppass("Result","doors lock status: %s",TAB_DoorLockState_Name[@SAS_Env_Lock_State]);
+    }
+    
+    API_State_change("sas_env_driver_door", CFG_EST_SideDoors.OPEN, CFG_EST_SideDoors.CLOSE,500);
+    teststep("action","driver door is opened then closed in 500ms");
+    
+    testwaitfortimeout(500);
+    
+    API_ANT_Set_IMMO_Antenna_State("Action",Immo_1_status,WB_number_1);
+    API_ANT_Set_IMMO_Antenna_State("Action",Immo_2_status,WB_number_2);
+    
+    for(i=0;i<6;i++)
+    {
+      putValue(Antennas[i][0],Ant_WB1_status[i]);
+      putValue(Antennas[i][1],Ant_WB2_status[i]);
+    }     
+    testwaitfortimeout(100);
+  }
+} 
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Set_LowPower_Status_On(char Test_Identifier[])                           
+ *  Role : This function set Low Power Status On
+ *                                
+*******************************************************************************/
+byte SAS_TAsrv_Set_LowPower_Status_On(char Test_Identifier[])
+{
+  byte ret;
+  
+  testWaitForTimeout(100);
+  DiagStopTesterPresent();
+  if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    //disable polling if car is not locked (polling when locked authorize entering LP)
+    if (@SAS_Env_Lock_State != CFG_EST_DoorLockState.LOCK)
+    {
+      API_DIAG_Start_Extended_Session(CFG_Low,"");
+      API_DIAG_Write_WorkSupport(CFG_Medium, "Disable ACCESS","2e 03 08","00","IKEY_ACCESS_CF"); // desactivate ikey_access_cf
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 08");
+      if (ret == 0x01)
+        testStepPass(" ", "IKEY_ACCESS_CF = TRUE");
+      else if (ret == 0)
+        testStepFail(" ", "IKEY_ACCESS_CF = FALSE");
+      
+      testWaitForTimeout(100);
+      
+      API_DIAG_Write_WorkSupport(CFG_Medium, "Enable ACCESS","2e 03 08","01","IKEY_ACCESS_CF"); // activate ikey_access_cf
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 08");
+      if (ret == 0x01)
+        testStepPass(" ", "IKEY_ACCESS_CF = TRUE");
+      else if (ret == 0)
+        testStepFail(" ", "IKEY_ACCESS_CF = FALSE");
+    }
+    
+    @SAS_Env_Keep_Wakeup = 0;
+        
+    @SAS_Signal_PowerPosition = CFG_SST_POWER_POSITION.SLEEP;
+    
+    if(testWaitForSignalMatch (SAS_LowPowerReached ,1,80000)) 
+    {
+      testStepPass(Test_Identifier,"Low Power is Reached");
+      return 1;
+    }
+    else
+    {
+      testStepWarning(Test_Identifier,"Low Power is not Reached");
+      return 0;
+    }
+  }
+  
+  else if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    SAS_TAsrv_Power_Position_Init("");
+ 
+    if(testWaitForSignalMatch (SAS_Signal_HFM_RefuseToSleep ,2,80000)) 
+    {
+      testStepPass(Test_Identifier,"Low Power is Reached");
+      return 1;
+    }
+    else
+    {
+      testStepWarning(Test_Identifier,"Low Power is not Reached");
+      return 0;
+    }
+  }
+  else if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {
+    SAS_TAsrv_Power_Position_Init(""); 
+    if(testWaitForSignalMatch(SAS_Signal_HFM_RefuseToSleep ,2,60000)) 
+    { 
+      @SAS_Env_Keep_Wakeup = 1;
+      testWaitForTimeout(200);
+      @SAS_Env_Keep_Wakeup =0;
+      
+      if(testWaitForSignalMatch (SAS_LowPowerReached ,0,80000)) 
+      {
+        testStepPass(Test_Identifier,"Low Power is Reached");
+        return 1;
+      }
+      else
+      {
+        testStepWarning(Test_Identifier,"Low Power is not Reached");
+        return 0;
+      }
+    }
+    else
+    {
+      testStepWarning(Test_Identifier,"Low Power is not Reached");
+      return 0;
+    }
+  }
+  testStepWarning(Test_Identifier,"The project is not supported");
+  return 0;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Is_LowPower_Reached()                          
+ *  Role : This function check Low Power Status
+ *                                
+*******************************************************************************/
+byte SAS_TAsrv_Is_LowPower_Reached(char Test_Identifier[])
+{
+  if(CFG_Project == @SAS_CONST_PRJ_NIS_CMFB)
+  {
+    if(@SAS_LowPowerReached==0)
+    {
+      testStep(Test_Identifier, "LP/HP status: Low Power");
+      return 1;
+    }
+    else
+    {
+       testStep(Test_Identifier, "LP/HP status: High Power");
+       return 0;   
+    }
+  }
+    
+  if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS)) 
+  {
+    if(@SAS_LowPowerReached==1)
+    {
+      testStep(Test_Identifier, "LP/HP status: Low Power");
+      return 1;
+    }
+    else
+    {
+       testStep(Test_Identifier, "LP/HP status: High Power");
+       return 0;
+    }
+  }
+  else if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    if(@SAS_Signal_HFM_RefuseToSleep == 2)
+    {
+      testStep(Test_Identifier, "LP/HP status: Low Power");
+      return 1;
+    }
+    else
+    {
+      testStep(Test_Identifier, "LP/HP status: High Power"); 
+      return 0;
+    }
+  }
+  testStepWarning(Test_Identifier,"The project is not supported");
+  return 0;
+}
+
+byte SAS_TAsrv_Is_LP_Test_Requested()
+{
+  if (@SAS_CFG_ALLOW_LP_TEST == SAS_CFG_ALLOW_LP_TEST::YES)
+    return 1;
+  else if (@SAS_CFG_ALLOW_LP_TEST == SAS_CFG_ALLOW_LP_TEST::NO)
+    return 0;
+  else if (@SAS_CFG_ALLOW_LP_TEST == SAS_CFG_ALLOW_LP_TEST::NO_with_confirmation)
+  {
+    if (/*NO*/2 == TestWaitForTesterConfirmation("LP Tests!\n\nContinue running tests for Low Power mode?",20000))
+      return 0;
+    else //yes or timeout: defualt action yes
+      return 1;
+  }
+  else if (@SAS_CFG_ALLOW_LP_TEST == SAS_CFG_ALLOW_LP_TEST::YES_with_confirmation)
+  {
+    if (/*YES*/1 == TestWaitForTesterConfirmation("LP Tests!\n\nContinue running tests for Low Power mode?",20000))
+      return 1;
+    else //no or timeout: defualt action no
+      return 0;
+  }
+  
+  /*default: NO */
+  return 0;
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_Key_Position                            
+ *  Role : This function returns if the key was detected inside or outside or 
+ *                                
+*******************************************************************************/
+byte SAS_TAsrv_Diag_Get_Key_Position(int connected_Key, int ZoneDetection)
+{
+  byte resp,prj; 
+  char rqst[20] ="";
+
+  resp = 0; prj = 0;
+  
+  if ((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM) || (CFG_Project == @SAS_CONST_PRJ_RSA_CMFB) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+      switch(connected_Key)
+    {
+        case 1:
+        if(ZoneDetection == INSIDE) strncpy(rqst,"2260e1",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE) strncpy(rqst,"2260e3",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_TRUNK) strncpy(rqst,"2260e4",elCount(rqst));
+        else if (ZoneDetection == ETA_OUTSIDE_BACK) strncpy(rqst,"2261c0",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_LEFT) strncpy(rqst,"226181",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_RIGHT) strncpy(rqst,"226182",elCount(rqst));
+        break;
+      
+        case 2:
+        if(ZoneDetection == INSIDE) strncpy(rqst,"2260e5",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE) strncpy(rqst,"2260e7",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_TRUNK) strncpy(rqst,"2260e8",elCount(rqst));
+        else if (ZoneDetection == ETA_OUTSIDE_BACK) strncpy(rqst,"2261c1",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_LEFT) strncpy(rqst,"226183",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_RIGHT) strncpy(rqst,"226184",elCount(rqst));
+        break;
+          
+        case 3:
+        if(ZoneDetection == INSIDE) strncpy(rqst,"2260e9",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE) strncpy(rqst,"2260eb",elCount(rqst)); 
+        else if (ZoneDetection == OUTSIDE_TRUNK) strncpy(rqst,"2260ec",elCount(rqst));
+        else if (ZoneDetection == ETA_OUTSIDE_BACK) strncpy(rqst,"2261c2",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_LEFT) strncpy(rqst,"226185",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_RIGHT) strncpy(rqst,"226186",elCount(rqst));
+        break;         
+          
+        case 4:
+        if(ZoneDetection == INSIDE) strncpy(rqst,"2260ed",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE) strncpy(rqst,"2260ef",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_TRUNK) strncpy(rqst,"2260f0",elCount(rqst));
+        else if (ZoneDetection == ETA_OUTSIDE_BACK) strncpy(rqst,"2261c3",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_LEFT) strncpy(rqst,"226187",elCount(rqst));
+        else if (ZoneDetection == OUTSIDE_RIGHT) strncpy(rqst,"226188",elCount(rqst));
+        break;
+
+        default:
+        return 0;
+        break;
+    }
+  }
+  if (strlen(rqst)>2) 
+  {
+    resp = API_DIAG_Read_WorkSupport (CFG_High,"Diagnosis",rqst);
+  }
+  else return 0;
+  
+  return resp;
+}
+ 
+/*******************************************************************************
+ *  Name : SAS_TAsrv_PASE_ACCESS_WorkSupport(Byte ZoningCf)                           
+ *  Role : This function active pase access worksupport 
+ *                                
+*******************************************************************************/
+void SAS_TAsrv_PASE_ACCESS_WorkSupport(Byte ZoningCf)
+{ 
+  byte ret,vehicle_code,NUM_OF_VEHICLE_CODE;
+  char vehcod[2]="",Buffer[CFG_LONG_STRING_LENGH];
+  testStep("Precondition","Set WS for ACCESS");
+  if ((CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    API_DIAG_Start_Extended_Session(CFG_Medium, "precondition");
+    NUM_OF_VEHICLE_CODE = getProfileInt("Vehicle_Code_CF", "PRM_NUM_OF_VEHICLE_CODE", -1, API_CFG_File);
+    ret = SAS_TAsrv_Get_Diag_Info_multiple_choices(Buffer,"22 03 cd","Vehicle_Code_CF");
+    if((ret < NUM_OF_VEHICLE_CODE && ret != 0)|| ret == C1A_Nissan_SLOCV1_VC)    
+      testStepPass(" ","VEHICLE_CODE_CF = %s",Buffer);
+    else
+      testStepFail(" ", "%d is an Invalid VEHICLE_CODE_CF",ret);
+    
+     API_DIAG_Write_WorkSupport(CFG_Medium, "Precondition", "2E 03 D5 2E 6C 29 06 22 50 20 24 00 00 00 00 00 00 00 00", "","Disable RAD");
+
+     API_DIAG_Write_WorkSupport(CFG_Medium, "Precondition", "2e 03 08", "01","IKEY_ACCESS_CF");
+
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 08");
+    if (ret == 0x01)
+      testStepPass(" ", "IKEY_ACCESS_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "IKEY_ACCESS_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "Precondition", "2e 03 23", "80","IKEY_ACCESS_ACTIVATION_INIT_CF");
+   
+  
+  ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 23");
+  if (ret == 0x80)
+    testStepPass(" ", "IKEY_ACCESS_ACTIVATION_INIT_CF = TRUE");
+  else if (ret == 0)
+    testStepFail(" ", "IKEY_ACCESS_ACTIVATION_INIT_CF = FALSE");
+  
+    testStep("Precondition","Set WS for ACCESS ZONING");
+    if(ZoningCf == 1)
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 22", "80","HANDFREE_ZONING_CF");
+    else if(ZoningCf == 0) 
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 22", "00","HANDFREE_ZONING_CF");
+    
+          
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 22");
+    if ((ret == 0x80)&&(ZoningCf == 1))
+      testStepPass(" ", "HANDFREE_ZONING_CF = TRUE");  
+    else if ((ret == 0)&&(ZoningCf == 0))
+      testStepPass(" ", "HANDFREE_ZONING_CF = FALSE");
+    else if ((ret == 0)&&(ZoningCf == 1))
+       testStepFail(" ", "HANDFREE_ZONING_CF is false but the zoning configuration is 1");
+    else if ((ret == 0x80)&&(ZoningCf == 0))
+       testStepFail(" ", "HANDFREE_ZONING_CF is true but the zoning configuration is 0");
+  }
+  else if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    API_DIAG_Start_Extended_Session(CFG_Medium, "precondition");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 15", "01","IKEY_ACCESS_CF");
+    
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 15");
+    if (ret == 0x01)
+      testStepPass(" ", "IKEY_ACCESS_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "IKEY_ACCESS_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 16", "80","IKEY_ACCESS_ACTIVATION_INIT_CF");
+  
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 16");
+    if (ret == 0x80)
+      testStepPass(" ", "IKEY_ACCESS_ACTIVATION_INIT_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "IKEY_ACCESS_ACTIVATION_INIT_CF = FALSE");
+  } 
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_WAC_WorkSupport()                            
+ *  Role : This function active WAC worksupport 
+ *                                
+*******************************************************************************/
+void SAS_TAsrv_WAC_WorkSupport()
+{
+  byte ret,data[2];
+  
+  testStep("Precondition","Set WS for WAC");
+  if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1b", "80","WALK_AWAY_LOCKING_CF");
+    
+     ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1b");
+    if (ret == 0x80)
+      testStepPass(" ", "WALK_AWAY_LOCKING_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WALK_AWAY_LOCKING_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1c", "80","WAC_BACKUP_MODE_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1c");
+    if (ret == 0x80)
+      testStepPass(" ", "WAC_BACKUP_MODE_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WAC_BACKUP_MODE_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1d", "80","WAC_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1d");
+    if (ret == 0x01)
+      testStepPass(" ", "WAC_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WAC_ACTIVATION_INITIAL_CF = FALSE");
+    
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1e 00", "01","WAC_SWITCH_OFF_DISTURBERS_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1e 00");
+    if (ret == 0x01)
+      testStepPass(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = FALSE");
+  }
+  else if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0D", "80","WALK_AWAY_LOCKING_CF");
+    
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0D");
+    if (ret == 0x80)
+      testStepPass(" ", "WALK_AWAY_LOCKING_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WALK_AWAY_LOCKING_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0E", "80","WAC_BACKUP_MODE_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0E");
+    if (ret == 0x80)
+      testStepPass(" ", "WAC_BACKUP_MODE_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WAC_BACKUP_MODE_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0F", "80","WAC_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0F");
+    if (ret == 0x01)
+      testStepPass(" ", "WAC_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "WAC_ACTIVATION_INITIAL_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 10 00", "01","WAC_SWITCH_OFF_DISTURBERS_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis",data, "22 03 10");
+    if (data[1] == 0x01)
+      testStepPass(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = TRUE");
+    else if (data[1] == 0x00)
+      testStepFail(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = FALSE");
+    
+        
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 CF", "00","WAL_ANTENNA_DIAG_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 CF");
+    if (ret == 0x00)
+      testStepPass(" ", "WAL_ANTENNA_DIAG_CF = FALSE");
+    else if (ret == 0x01)
+      testStepFail(" ", "WAL_ANTENNA_DIAG_CF = TRUE");
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_CAD_APRUN_WorkSupport                            
+ *  Role : This function active CAD APRUN worksupport 
+ *                                
+*******************************************************************************/
+void SAS_TAsrv_CAD_APRUN_WorkSupport()
+{
+  byte ret;
+  
+  testStep("Precondition","Set WS for CAD aPPRUN");
+  if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1f", "80","CUSTOMER_APPROACH_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1f");
+    if (ret == 0x80)
+      testStepPass(" ", "CUSTOMER_APPROACH_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "CUSTOMER_APPROACH_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 20", "80","APPROACH_UNLOCK_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 20");
+    if (ret == 0x80)
+      testStepPass(" ", "APPROACH_UNLOCK_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "APPROACH_UNLOCK_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 21", "80","APRUN_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 21");
+    if (ret == 0x80)
+      testStepPass(" ", "APRUN_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "APRUN_ACTIVATION_INITIAL_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 25", "80","EASY_TRUNK_ACCESS_ECU_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 25");
+    if (ret == 0x80)
+      testStepPass(" ", "EASY_TRUNK_ACCESS_ECU_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "EASY_TRUNK_ACCESS_ECU_CF = FALSE");
+  }
+  else if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    
+    if(SAS_TAsrv_Check_TestValidity(Preauthent)&&!SAS_TAsrv_Check_TestValidity(CAD))
+    {
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 12", "00","APPROACH_UNLOCK_CF");
+      
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 12");
+      if (ret == 0x00)
+        testStepPass(" ", "APPROACH_UNLOCK_CF = TRUE");
+      else if (ret == 0x80)
+        testStepFail(" ", "APPROACH_UNLOCK_CF = FALSE");
+    }
+    else
+    {
+      
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 12", "80","APPROACH_UNLOCK_CF");
+      
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 12");
+      if (ret == 0x80)
+        testStepPass(" ", "APPROACH_UNLOCK_CF = TRUE");
+      else if (ret == 0)
+        testStepFail(" ", "APPROACH_UNLOCK_CF = FALSE");
+     
+    }
+    if (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS)
+    {
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 03", "80","APPRUN_FACTORY_SETTING_CF");
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 03");
+      if (ret == 0x80)
+          testStepPass(" ", "APPRUN_FACTORY_SETTING_CF = TRUE");
+      else if (ret == 0)
+          testStepFail(" ", "APPRUN_FACTORY_SETTING_CF = FALSE");
+    
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0B", "80","USER_MOVING_DETECTION_CF");
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0B");
+      if (ret == 0x80)
+          testStepPass(" ", "USER_MOVING_DETECTION_CF = TRUE");
+      else if (ret == 0)
+          testStepFail(" ", "USER_MOVING_DETECTION_CF = FALSE");
+    }
+    else
+      {
+        API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 11", "80","CUSTOMER_APPROACH_CF");
+        ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 11");
+        if (ret == 0x80)
+          testStepPass(" ", "CUSTOMER_APPROACH_CF = TRUE");
+        else if (ret == 0)
+          testStepFail(" ", "CUSTOMER_APPROACH_CF = FALSE");
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 13", "80","APRUN_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 13");
+    if (ret == 0x80)
+      testStepPass(" ", "APRUN_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "APRUN_ACTIVATION_INITIAL_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 16", "80","EASY_TRUNK_ACCESS_ECU_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 16");
+    if (ret == 0x80)
+      testStepPass(" ", "EASY_TRUNK_ACCESS_ECU_CF = TRUE");
+    else if (ret == 0)
+      testStepFail(" ", "EASY_TRUNK_ACCESS_ECU_CF = FALSE");
+      }
+  }
+}
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Deactivate_WAC()                            
+ *  Role : This function deactivate WAC worksupport 
+ *                                
+*******************************************************************************/
+void SAS_TAsrv_Deactivate_WAC()
+{
+  byte ret,data[2];
+  
+  testStep("Precondition","Deactivate WS for WAC");
+  if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1b", "00","WALK_AWAY_LOCKING_CF");
+    
+     ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1b");
+    if (ret == 0x80)
+      testStepFail(" ", "WALK_AWAY_LOCKING_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WALK_AWAY_LOCKING_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1c", "00","WAC_BACKUP_MODE_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1c");
+    if (ret == 0x80)
+      testStepFail(" ", "WAC_BACKUP_MODE_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WAC_BACKUP_MODE_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1d", "00","WAC_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1d");
+    if (ret == 0x01)
+      testStepFail(" ", "WAC_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WAC_ACTIVATION_INITIAL_CF = FALSE");
+    
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1e 00", "00","WAC_SWITCH_OFF_DISTURBERS_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1e 00");
+    if (ret == 0x01)
+      testStepFail(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = FALSE");
+  }
+  else if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {  
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0D", "00","WALK_AWAY_LOCKING_CF");
+    
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0D");
+    if (ret == 0x80)
+      testStepFail(" ", "WALK_AWAY_LOCKING_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WALK_AWAY_LOCKING_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0E", "00","WAC_BACKUP_MODE_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0E");
+    if (ret == 0x80)
+      testStepFail(" ", "WAC_BACKUP_MODE_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WAC_BACKUP_MODE_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0F", "00","WAC_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0F");
+    if (ret == 0x01)
+      testStepFail(" ", "WAC_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "WAC_ACTIVATION_INITIAL_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 10 00", "00","WAC_SWITCH_OFF_DISTURBERS_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis",data, "22 03 10");
+    if (data[1] == 0x01)
+      testStepFail(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = TRUE");
+    else if (data[1] == 0x00)
+      testStepPass(" ", "WAC_SWITCH_OFF_DISTURBERS_CF = FALSE");
+    
+        
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 CF", "00","WAL_ANTENNA_DIAG_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 CF");
+    if (ret == 0x00)
+      testStepPass(" ", "WAL_ANTENNA_DIAG_CF = FALSE");
+    else if (ret == 0x01)
+      testStepFail(" ", "WAL_ANTENNA_DIAG_CF = TRUE");
+  }
+}
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Deactivate_CAD_Apprun                            
+ *  Role : This function Deactivate CAD APRUN worksupport 
+ *                                
+*******************************************************************************/
+void SAS_TAsrv_Deactivate_CAD_Apprun()
+{
+  byte ret;
+  
+  testStep("Precondition","Deactivate WS for CAD aPPRUN");
+  if(CFG_Project == @SAS_CONST_PRJ_RSA_CMFB)
+  {
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 1f", "00","CUSTOMER_APPROACH_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 1f");
+    if (ret == 0x80)
+      testStepFail(" ", "CUSTOMER_APPROACH_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "CUSTOMER_APPROACH_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 20", "00","APPROACH_UNLOCK_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 20");
+    if (ret == 0x80)
+      testStepFail(" ", "APPROACH_UNLOCK_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "APPROACH_UNLOCK_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 21", "00","APRUN_ACTIVATION_INITIAL_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 21");
+    if (ret == 0x80)
+      testStepFail(" ", "APRUN_ACTIVATION_INITIAL_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "APRUN_ACTIVATION_INITIAL_CF = FALSE");
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 00 25", "00","EASY_TRUNK_ACCESS_ECU_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 00 25");
+    if (ret == 0x80)
+      testStepFail(" ", "EASY_TRUNK_ACCESS_ECU_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "EASY_TRUNK_ACCESS_ECU_CF = FALSE");
+  }
+  else if((CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HFM) || (CFG_Project == @SAS_CONST_PRJ_C1A_HFM ) || (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS))
+  {
+    
+    
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 12", "00","APPROACH_UNLOCK_CF");
+    
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 12");
+    if (ret == 0x80)
+      testStepFail(" ", "APPROACH_UNLOCK_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "APPROACH_UNLOCK_CF = FALSE");
+    
+    if (CFG_Project == @SAS_CONST_PRJ_C1A_SqSUV_HS)
+    {
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 03", "00","APPRUN_FACTORY_SETTING_CF");
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 03");
+      if (ret == 0x80)
+        testStepFail(" ", "APPRUN_FACTORY_SETTING_CF = TRUE");
+      else if (ret == 0)
+        testStepPass(" ", "APPRUN_FACTORY_SETTING_CF = FALSE");
+    
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 0B", "00","USER_MOVING_DETECTION_CF ");
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 0B");
+      if (ret == 0x80)
+        testStepFail(" ", "USER_MOVING_DETECTION_CF  = TRUE");
+      else if (ret == 0)
+        testStepPass(" ", "USER_MOVING_DETECTION_CF  = FALSE");
+    }
+    else
+    {
+      API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 11", "00","CUSTOMER_APPROACH_CF");
+      ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 11");
+      if (ret == 0x80)
+        testStepFail(" ", "CUSTOMER_APPROACH_CF = TRUE");
+      else if (ret == 0)
+        testStepPass(" ", "CUSTOMER_APPROACH_CF = FALSE");
+    API_DIAG_Write_WorkSupport(CFG_Medium, "precondition", "2e 03 16", "00","EASY_TRUNK_ACCESS_ECU_CF");
+    ret = API_DIAG_Read_WorkSupport (CFG_Medium,"Diagnosis", "22 03 16");
+    if (ret == 0x80)
+      testStepFail(" ", "EASY_TRUNK_ACCESS_ECU_CF = TRUE");
+    else if (ret == 0)
+      testStepPass(" ", "EASY_TRUNK_ACCESS_ECU_CF = FALSE");
+    }
+  }
+}
+
+//###################### Test Cases
+testcase SAS_TAsrv_TEST_Init(char TestCaseVersion[])
+{
+  SAS_TAsrv_Intialize_Test(TestCaseVersion);
+}
+
+testcase SAS_TAsrv_TEST_Set_LowPower_Status_On(char Test_Identifier[])
+{
+  //test title & description
+  TestCaseTitle("ENTER_LOW_POWER","Trying enter LOW Power mode");
+  TestCaseDescription ("This test case aims to enter Low Power Mode");
+  
+  testStep("","************* Test Procedure *************");
+  SAS_TAsrv_Set_LowPower_Status_On(Test_Identifier);
+}
+
+
+/*******************************************************************************
+ *  Name : SAS_TAsrv_Get_Keyfob_Learned_Rank                            
+ *  Role : This function return the learned rank of the keyfob                              
+*******************************************************************************/
+byte SAS_TAsrv_Get_Keyfob_Learned_Rank(byte KeyFobNum_index)
+{
+  int rank,Wireless_num;
+  char SAS_AT_RANK_KEYFOBXWIRELESSY[32];
+  
+  Wireless_num = API_KEYS_Get_WBox_Number(KeyFobNum_index);
+  
+  if(Wireless_num==2)
+    KeyFobNum_index=KeyFobNum_index-2;
+  
+  snprintf(SAS_AT_RANK_KEYFOBXWIRELESSY,elcount(SAS_AT_RANK_KEYFOBXWIRELESSY),"SAS_AT_RANK_KEYFOB%d_WIRELESS%d",KeyFobNum_index,Wireless_num);
+  
+  rank = getvalue(SAS_AT_RANK_KEYFOBXWIRELESSY) ;
+  if((rank<1)||(rank>4))
+    testStepWarning("Test Result","Keyfob rank is undefined, please select the correct rank of the keyfob from the panel SAS_AT_PANEL");
+ 
+  return(rank);
+    
+
+}
+
+
+/*******************************************************************************/
+/*  Name : SAS_TAsrv_Tested_Requirement                           
+/*  Role : This function Print the Tested Requirement in test case description                                
+/*******************************************************************************/
+void SAS_TAsrv_Tested_Requirement(char Requirement_ID[],int project)
+{
+  char outputtoscreen[100];
+  if (  project == CFG_Project)
+   {
+      snprintf( outputtoscreen,elcount(outputtoscreen),"\n TestedRequirement: %s", Requirement_ID);
+      testCaseDescription(outputtoscreen);
+   }
+  
+}
+/*******************************************************************************/
+/*  Name : SAS_TAsrv_Find_Supported_Functionality                           
+/*  Role : This function Will fill a table that contain supported functionality 
+/*  depending on LF conf Class
+/*******************************************************************************/
+Void SAS_TAsrv_Find_Supported_Functionality()
+{
+  byte i,return_array;
+  char Buffer_FCT[40]=""; 
+  return_array = getProfileArray("Fonctions_Correspondance", Zone_Definition_CFG, Buffer_FCT, elcount(Buffer_FCT), API_CFG_File);   
+  if (return_array > 0 )
+   {
+      for (i = 0; i<return_array ; i++)
+      {
+         Fct_correspandence[i] = Buffer_FCT[i];
+        
+      }
+      Fct_correspandence_Table_size = return_array;
+   }
+  else
+    testStepFail("Check Config file , no table found");
+}
+/*******************************************************************************/
+/*  Name : SAS_TAsrv_Check_TestValidity                           
+/*  Role : This function will check if a function is valid depending on vehicle 
+/*  code  
+/*******************************************************************************/
+byte SAS_TAsrv_Check_TestValidity(Byte Usecase)
+{
+    if( Usecase < Fct_correspandence_Table_size) 
+    {
+      //write("xxxx %d", Fct_correspandence_Table_size);
+      return Fct_correspandence[Usecase];
+    }
+    else 
+    {
+      testStepFail("Error invalid function");
+      return -1;
+    }
+}
+/*******************************************************************************/
+/*  Name : SAS_TAsrv_Get_FunctionReactionTime                           
+/*  Role : This function will return the value of reaction time for the 
+/*  specified function 
+/*******************************************************************************/
+long SAS_TAsrv_Get_FunctionReactionTime(byte Function)
+{   
+  char buffer[30]="",str[30];
+  byte value;
+  snprintf(str,elcount(str), "%d", Function);
+  value = getProfileString("Reaction_Time", str,"", buffer, elcount(buffer), API_CFG_File); 
+  if (value == 0)
+  {
+    testStepFail("Error: invalid function ");
+    return -1;
+  }
+  else
+   return  getProfileInt("Reaction_Time", buffer, -1, API_CFG_File); 
+  
+}
